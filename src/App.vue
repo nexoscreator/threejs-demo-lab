@@ -61,39 +61,40 @@ onMounted(() => {
     const cubeGeo = new THREE.BoxGeometry(1, 1, 1);
     const cubeMat = new THREE.MeshPhongMaterial({ map: texture }); // color: 0x44aa88
     const mesh = new THREE.Mesh(cubeGeo, cubeMat);
-    mesh.position.set(5, 0.5, 0);
+    mesh.position.set(5, 0.5, -1);
     scene.add(mesh);
   }
   // A Cone
   {
     const loader = new THREE.TextureLoader();
     const texture = loader.load("../../resources/other/texture_04.png");
-    const coneGeo = new THREE.ConeGeometry(1, 2, 4);
+    const coneGeo = new THREE.ConeGeometry(0.75, 2, 16);
     const coneMat = new THREE.MeshPhongMaterial({ map: texture }); // color: 0x44aa88
     const mesh = new THREE.Mesh(coneGeo, coneMat);
-    mesh.position.set(-3, 0.5, 0);
+    mesh.position.set(-3, 1, 0);
     scene.add(mesh);
   }
   // A Cylinder
   {
     const loader = new THREE.TextureLoader();
     const texture = loader.load("../../resources/other/texture_03.png");
-    const cylinderGeo = new THREE.CylinderGeometry(1, 1, 4, 6);
+    const cylinderGeo = new THREE.CylinderGeometry(0.5, 0.5, 2, 16);
     const cylinderMat = new THREE.MeshPhongMaterial({ map: texture }); // color: 0x44aa88
     const mesh = new THREE.Mesh(cylinderGeo, cylinderMat);
-    mesh.position.set(3, 0.5, 0);
+    mesh.position.set(3, 2, 0);
     scene.add(mesh);
   }
-  // Sphere
+  // A Sphere
   {
     const loader = new THREE.TextureLoader();
     const texture = loader.load("../../resources/other/texture_03.png");
     const sphereGeo = new THREE.SphereGeometry(1, 32, 16);
     const sphereMat = new THREE.MeshPhongMaterial({ map: texture }); // color: 0x8844aa
     const mesh = new THREE.Mesh(sphereGeo, sphereMat);
-    mesh.position.set(-5, 0.5, 0);
+    mesh.position.set(-5, 1.25, 0);
     scene.add(mesh);
   }
+  // A Lines
   {
     const material = new THREE.LineBasicMaterial({ color: 0xaa8844 });
     const points = [];
@@ -107,6 +108,7 @@ onMounted(() => {
     const line = new THREE.Line(geometry, material);
     scene.add(line);
   }
+  // A Car
   {
     const loader = new GLTFLoader();
     loader.load(
@@ -120,7 +122,7 @@ onMounted(() => {
       }
     );
   }
-  // Light
+  // Lights
   {
     const directionLight = new THREE.DirectionalLight(0xffffff, 4);
     directionLight.position.set(-1, 2, 4);
@@ -129,11 +131,11 @@ onMounted(() => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
     scene.add(ambientLight);
 
-    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444);
-    scene.add(hemisphereLight);
+    // const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+    // scene.add(hemisphereLight);
   }
 
-  scene.fog = new THREE.Fog(0xa0a0a0, 10, 100);
+  // scene.fog = new THREE.Fog(0xa0a0a0, 10, 100);
 
   const animate = function () {
     requestAnimationFrame(animate);
